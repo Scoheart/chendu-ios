@@ -9,7 +9,7 @@ struct AnnotationCard: View {
         let color = Ink.color(note.kind)
         HStack(alignment: .top, spacing: 10) {
             Text("\(note.n)")
-                .font(.handEn(18, bold: true))
+                .font(.system(size: 14, weight: .semibold))
                 .foregroundStyle(Color(color))
                 .frame(width: 24, height: 24)
                 .overlay(Circle().stroke(Color(color), lineWidth: 1.6))
@@ -22,12 +22,12 @@ struct AnnotationCard: View {
                         .padding(.horizontal, 4)
                         .overlay(RoundedRectangle(cornerRadius: 3).stroke(Color(color).opacity(0.7), lineWidth: 1))
                     Text(note.head)
-                        .font(.handEn(25, bold: true))
+                        .font(.system(size: 17, weight: .semibold))
                         .foregroundStyle(Color(color))
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 Text(emphasized(note.body, color: color))
-                    .font(.handZh(19))
+                    .font(.system(size: 16))
                     .lineSpacing(3)
                     .foregroundStyle(Color(red: 0.18, green: 0.17, blue: 0.15))
                     .fixedSize(horizontal: false, vertical: true)
@@ -42,7 +42,6 @@ struct AnnotationCard: View {
                 .fill(Color(Ink.background(note.kind)))
         )
         .overlay(alignment: .leading) { Rectangle().fill(Color(color)).frame(width: 3) }
-        .rotationEffect(.degrees(note.tilt * 0.35))
         .contentShape(Rectangle())
         .onTapGesture(perform: onClose)
         .accessibilityElement(children: .combine)
@@ -61,7 +60,7 @@ struct UserNoteCard: View {
         VStack(alignment: .leading, spacing: 6) {
             HStack(spacing: 6) {
                 Image(systemName: "pencil.line")
-                Text("我的笔记").font(.handZh(17))
+                Text("我的笔记").font(.system(size: 15, weight: .medium))
                 Spacer()
             }
             .foregroundStyle(Color.userInk)
@@ -70,7 +69,7 @@ struct UserNoteCard: View {
                 .foregroundStyle(Color(red: 0.42, green: 0.29, blue: 0.11))
                 .lineLimit(3)
             Text(note.text)
-                .font(.handZh(20))
+                .font(.system(size: 16))
                 .foregroundStyle(Color.ink)
                 .fixedSize(horizontal: false, vertical: true)
                 .textSelection(.enabled)

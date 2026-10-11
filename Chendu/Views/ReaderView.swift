@@ -72,7 +72,7 @@ struct ReaderView: View {
     @ToolbarContentBuilder
     private var toolbar: some ToolbarContent {
         ToolbarItem(placement: .principal) {
-            Text("晨读 · \(DateText.short(date))").font(.handZh(20)).foregroundStyle(Color.grammarRed)
+            Text("晨读 · \(DateText.short(date))").font(.system(size: 16, weight: .semibold)).foregroundStyle(Color.grammarRed)
         }
         ToolbarItemGroup(placement: .topBarTrailing) {
             Menu {
@@ -152,7 +152,7 @@ struct ReaderView: View {
             HStack(spacing: 10) {
                 TopicChip(key: issue.topic, label: issue.topicLabel)
                 Text(issue.dateLabel.isEmpty ? "今日精读" : issue.dateLabel)
-                    .font(.handZh(17)).foregroundStyle(Color.muted)
+                    .font(.system(size: 14)).foregroundStyle(Color.muted)
             }
             .padding(.top, 16)
             Text(issue.title)
@@ -168,14 +168,13 @@ struct ReaderView: View {
             }
             if !issue.lead.isEmpty {
                 Text(issue.lead)
-                    .font(.handZh(19))
+                    .font(.system(size: 16))
                     .lineSpacing(4)
                     .foregroundStyle(Color(Ink.leadInk))
                     .padding(.horizontal, 14)
                     .padding(.vertical, 12)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(RoundedRectangle(cornerRadius: 4).fill(Color(Ink.leadBG)).shadow(color: .black.opacity(0.06), radius: 0, y: 1))
-                    .rotationEffect(.degrees(-0.3))
                     .padding(.top, 6)
             }
         }
@@ -191,7 +190,7 @@ struct ReaderView: View {
             }
             .font(.system(size: 13))
             Text("👆 点彩色划线看笔记 · ✏️ 长按选中原文可「加笔记」")
-                .font(.handZh(15)).foregroundStyle(Color.grammarRed)
+                .font(.system(size: 13)).foregroundStyle(Color.grammarRed)
         }
         .padding(.vertical, 16)
     }
@@ -282,7 +281,7 @@ struct ReaderView: View {
                     } label: {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("“\(note.quote)”").font(.serif(15).italic()).foregroundStyle(Color(red: 0.42, green: 0.29, blue: 0.11)).lineLimit(2)
-                            Text(note.text).font(.handZh(19)).foregroundStyle(Color.ink).multilineTextAlignment(.leading)
+                            Text(note.text).font(.system(size: 16)).foregroundStyle(Color.ink).multilineTextAlignment(.leading)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(12)

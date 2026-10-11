@@ -93,7 +93,7 @@ struct ParagraphRendering {
         for (n, range) in noteRanges {
             let kind = notes[n]?.kind ?? .vocab
             inserts.append((NSMaxRange(range), 0, NSAttributedString(string: "\(n)", attributes: [
-                .font: HandFont.en(supSize + 2, bold: true),
+                .font: UIFont.systemFont(ofSize: supSize, weight: .bold),
                 .foregroundColor: Ink.color(kind),
                 .baselineOffset: fontSize * 0.4,
                 .paragraphStyle: style,

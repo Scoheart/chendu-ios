@@ -53,7 +53,7 @@ struct SettingsView: View {
 
                 Section("关于") {
                     LabeledContent("版本", value: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0")
-                    Text("手写字体：马善政楷书（Ma Shan Zheng）、Caveat，均为 SIL Open Font License。")
+                    Text("标题「晨读」和栏目标题使用马善政楷书（SIL Open Font License）。正文、批注和日期用系统字体。")
                         .font(.footnote).foregroundStyle(Color.muted)
                 }
             }

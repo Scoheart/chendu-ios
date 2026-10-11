@@ -72,4 +72,4 @@ To regenerate the app icon and lock-screen artwork: `swift scripts/make_icon.swi
 
 ## Credits
 
-Handwriting fonts are the same as the site's: [Ma Shan Zheng](https://fonts.google.com/specimen/Ma+Shan+Zheng) and [Caveat](https://fonts.google.com/specimen/Caveat), both under the SIL Open Font License (`Chendu/Resources/Fonts/OFL-MaShanZheng.txt`). Article excerpts are © their publishers and used for personal study only.
+The wordmark and section headings use [Ma Shan Zheng](https://fonts.google.com/specimen/Ma+Shan+Zheng) (SIL Open Font License, `Chendu/Resources/Fonts/OFL-MaShanZheng.txt`). Everything that carries the article — notes, summaries, dates, labels — uses the system font, and the English article body uses the system serif. Article excerpts are © their publishers and used for personal study only.

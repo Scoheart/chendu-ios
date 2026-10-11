@@ -60,7 +60,7 @@ struct IssueListView: View {
         VStack(spacing: 6) {
             Text("晨读").font(.handZh(56)).foregroundStyle(Color.grammarRed)
             Text("每天一篇真实英文 · 美股 × AI 轮换 · 手写批注精读")
-                .font(.handZh(16)).foregroundStyle(Color.muted)
+                .font(.system(size: 14)).foregroundStyle(Color.muted)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
         }
@@ -91,7 +91,7 @@ private struct HeroCard: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 10) {
                 TopicChip(key: issue.topic, label: issue.topicLabel)
-                Text("最新一期 · \(DateText.short(issue.date))").font(.handZh(17)).foregroundStyle(Color.muted)
+                Text("最新一期 · \(DateText.short(issue.date))").font(.system(size: 14)).foregroundStyle(Color.muted)
                 Spacer()
                 OfflineBadge(date: issue.date)
             }
@@ -101,11 +101,11 @@ private struct HeroCard: View {
                 .multilineTextAlignment(.leading)
             Text(issue.zhTitle).font(.system(size: 15)).foregroundStyle(Color(red: 0.29, green: 0.27, blue: 0.24))
             if let lead = issue.lead, !lead.isEmpty {
-                Text(lead).font(.handZh(18)).foregroundStyle(Color(Ink.leadInk)).lineLimit(5).lineSpacing(3)
+                Text(lead).font(.system(size: 15)).foregroundStyle(Color(Ink.leadInk)).lineLimit(5).lineSpacing(3)
             }
             HStack {
                 Spacer()
-                Text("开始读 →").font(.handZh(22)).foregroundStyle(Color.grammarRed)
+                Text("开始读 →").font(.system(size: 16, weight: .semibold)).foregroundStyle(Color.grammarRed)
             }
         }
         .padding(.horizontal, 20)
@@ -122,7 +122,7 @@ private struct ArchiveRow: View {
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
-                Text(String(issue.date.dropFirst(5))).font(.handEn(22)).foregroundStyle(Color.muted)
+                Text(String(issue.date.dropFirst(5))).font(.system(size: 15, weight: .medium).monospacedDigit()).foregroundStyle(Color.muted)
                 TopicChip(key: issue.topic, label: issue.topicLabel)
             }
             .frame(width: 64, alignment: .leading)

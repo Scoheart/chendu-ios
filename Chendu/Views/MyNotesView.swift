@@ -54,7 +54,7 @@ struct MyNotesView: View {
                                 }
                             } header: {
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text(group.date).font(.handEn(20)).foregroundStyle(Color.muted)
+                                    Text(group.date).font(.system(size: 14, weight: .medium).monospacedDigit()).foregroundStyle(Color.muted)
                                     Text(group.title).font(.serif(15, weight: .semibold)).foregroundStyle(Color.ink).textCase(nil)
                                 }
                             }
@@ -98,7 +98,7 @@ struct MyNotesView: View {
     private func row(_ note: UserNote) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text("“\(note.quote)”").font(.serif(15).italic()).foregroundStyle(Color(red: 0.42, green: 0.29, blue: 0.11)).lineLimit(3)
-            Text(note.text).font(.handZh(20)).foregroundStyle(Color.ink)
+            Text(note.text).font(.system(size: 16)).foregroundStyle(Color.ink)
             Text(note.updatedAt, format: .dateTime.month().day().hour().minute()).font(.caption2).foregroundStyle(Color.muted)
         }
         .padding(.vertical, 4)

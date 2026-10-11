@@ -67,18 +67,16 @@ extension Color {
     static let userInk = Color(Ink.user)
 }
 
-/// Bundled handwriting faces: Ma Shan Zheng (Chinese) and Caveat (English), both SIL OFL, same as the site.
+/// Ma Shan Zheng, used only for the wordmark and section headings. Article text uses the system font.
 enum HandFont {
     private static let descriptors: [String: CTFontDescriptor] = {
         var out: [String: CTFontDescriptor] = [:]
-        for (file, ext) in [("MaShanZheng-Regular", "ttf"), ("Caveat", "woff2")] {
-            guard let url = Bundle.main.url(forResource: file, withExtension: ext),
-                  let data = try? Data(contentsOf: url),
-                  let descs = CTFontManagerCreateFontDescriptorsFromData(data as CFData) as? [CTFontDescriptor] else { continue }
-            for d in descs {
-                let name = CTFontCopyPostScriptName(CTFontCreateWithFontDescriptor(d, 12, nil)) as String
-                out[name] = d
-            }
+        guard let url = Bundle.main.url(forResource: "MaShanZheng-Regular", withExtension: "ttf"),
+              let data = try? Data(contentsOf: url),
+              let descs = CTFontManagerCreateFontDescriptorsFromData(data as CFData) as? [CTFontDescriptor] else { return out }
+        for d in descs {
+            let name = CTFontCopyPostScriptName(CTFontCreateWithFontDescriptor(d, 12, nil)) as String
+            out[name] = d
         }
         return out
     }()
@@ -94,11 +92,6 @@ enum HandFont {
         make(["MaShanZheng-Regular"], size, fallback: .systemFont(ofSize: size))
     }
 
-    static func en(_ size: CGFloat, bold: Bool = false) -> UIFont {
-        make(bold ? ["CaveatRoman-Bold", "Caveat-Bold", "Caveat-Regular"] : ["Caveat-Regular"], size,
-             fallback: .italicSystemFont(ofSize: size))
-    }
-
     static func serif(_ size: CGFloat, weight: UIFont.Weight = .regular, italic: Bool = false) -> UIFont {
         var d = UIFont.systemFont(ofSize: size, weight: weight).fontDescriptor
         d = d.withDesign(.serif) ?? d
@@ -109,7 +102,6 @@ enum HandFont {
 
 extension Font {
     static func handZh(_ size: CGFloat) -> Font { Font(HandFont.zh(size) as CTFont) }
-    static func handEn(_ size: CGFloat, bold: Bool = false) -> Font { Font(HandFont.en(size, bold: bold) as CTFont) }
     static func serif(_ size: CGFloat, weight: Font.Weight = .regular) -> Font { .system(size: size, weight: weight, design: .serif) }
 }
 
