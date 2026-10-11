@@ -68,4 +68,24 @@ VITE_SUPABASE_URL=http://127.0.0.1:54321 VITE_SUPABASE_ANON_KEY=<anon key> npm r
 
 ## 导入已有三期（Step 19）
 
-脚本只对你指定的 `user_id` 写入。要导入云端库时你自己执行，并自己指定数据库。不会自动停掉每天的手写发布，也不会改线上站。
+脚本只读仓库里的三份 JSON 夹具，写入你指定的 `user_id`。`config_snapshot.origin` 为 `import`。音频对象是夹具文件的字节，不是语音。默认拒绝非本机地址，也不会请求 `vercel.app`。
+
+本地验收：
+
+```bash
+supabase/tests/run_import.sh
+```
+
+对一个已经存在的本地用户：
+
+```bash
+set -a
+source <(supabase status -o env)
+set +a
+export SUPABASE_URL="$API_URL"
+export SUPABASE_SERVICE_ROLE_KEY="$SERVICE_ROLE_KEY"
+deno run --allow-read --allow-env --allow-net \
+  packages/pipeline/import_issue.ts --user <本地 user uuid>
+```
+
+要写入托管项目时，你自己把 `SUPABASE_URL` 指到那个项目，带上 `--confirm-remote`，并自己准备 service role。不要把 key 写进仓库。脚本不会改 `chendu-english.vercel.app`，也不会停掉每天的手写发布。本仓库没有对线上库执行过导入。
