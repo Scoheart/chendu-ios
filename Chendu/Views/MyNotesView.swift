@@ -12,7 +12,7 @@ struct MyNotesView: View {
     private var groups: [(date: String, title: String, notes: [UserNote])] {
         var order: [String] = []
         var map: [String: [UserNote]] = [:]
-        for n in notes {
+        for n in notes where n.deletedAt == nil {
             if map[n.issueDate] == nil { order.append(n.issueDate) }
             map[n.issueDate, default: []].append(n)
         }
@@ -25,7 +25,7 @@ struct MyNotesView: View {
     var body: some View {
         NavigationStack {
             Group {
-                if notes.isEmpty {
+                if groups.isEmpty {
                     ContentUnavailableView {
                         Label("还没有笔记", systemImage: "pencil.and.scribble")
                     } description: {
@@ -67,14 +67,14 @@ struct MyNotesView: View {
             .navigationTitle("我的笔记")
             .navigationDestination(for: ReaderRoute.self) { r in ReaderView(date: r.date, focusNote: r.focusNote) }
             .toolbar {
-                if !notes.isEmpty {
+                if !groups.isEmpty {
                     ToolbarItemGroup(placement: .topBarTrailing) {
                         Button {
-                            UIPasteboard.general.string = NotesExport.markdown(notes)
+                            UIPasteboard.general.string = NotesExport.markdown(notes.filter { $0.deletedAt == nil })
                             copied = true
                         } label: { Image(systemName: "doc.on.doc") }
                             .accessibilityLabel("复制全部笔记")
-                        ShareLink(item: NotesExport.markdown(notes), subject: Text("晨读 · 我的笔记"), preview: SharePreview("晨读 · 我的笔记"))
+                        ShareLink(item: NotesExport.markdown(notes.filter { $0.deletedAt == nil }), subject: Text("晨读 · 我的笔记"), preview: SharePreview("晨读 · 我的笔记"))
                             .accessibilityLabel("导出笔记")
                     }
                 }
@@ -106,7 +106,7 @@ struct MyNotesView: View {
     }
 
     private func delete(_ note: UserNote) {
-        context.delete(note)
+        note.markDeleted()
         try? context.save()
     }
 }

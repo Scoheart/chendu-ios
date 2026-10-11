@@ -34,6 +34,8 @@ struct Issue: Codable, Hashable, Identifiable {
     var words: [ReviewWord]
     var patterns: [SentencePattern]
     var podcast: Podcast?
+    /// Supabase `issues.id`. The reader still identifies an issue by `date`.
+    var remoteId: String? = nil
 
     var id: String { date }
 

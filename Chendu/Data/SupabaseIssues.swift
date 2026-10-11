@@ -12,7 +12,7 @@ struct SupabaseIssueRemote: IssueRemote {
     var transport: any HTTPTransport
 
     func fetchIssues() async throws -> (issues: [Issue], audioPaths: [String: [String: String]]) {
-        let select = "issue_date,topic,topic_label,title,zh_title,byline,lead,blocks,credit,podcast,annotations(n,kind,tag,head,body),vocab(position,word,ipa,meaning,example),patterns(position,pattern,pattern_zh,source_sentence,model_sentence,model_zh),audio_assets(kind,storage_path)"
+        let select = "id,issue_date,topic,topic_label,title,zh_title,byline,lead,blocks,credit,podcast,annotations(n,kind,tag,head,body),vocab(position,word,ipa,meaning,example),patterns(position,pattern,pattern_zh,source_sentence,model_sentence,model_zh),audio_assets(kind,storage_path)"
         var parts = URLComponents(url: baseURL.appending(path: "rest/v1/issues"), resolvingAgainstBaseURL: false)!
         parts.queryItems = [
             URLQueryItem(name: "select", value: select),

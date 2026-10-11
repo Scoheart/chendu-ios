@@ -15,6 +15,9 @@ final class UserNote {
     var text: String
     var createdAt: Date
     var updatedAt: Date
+    var deletedAt: Date?
+    /// Supabase `issues.id` for this note. Empty until the issue has been fetched.
+    var issueRemoteId: String?
 
     init(issueDate: String, issueTitle: String, paragraphIndex: Int, start: Int, length: Int, quote: String, text: String) {
         self.id = UUID()
@@ -27,6 +30,13 @@ final class UserNote {
         self.text = text
         self.createdAt = .now
         self.updatedAt = .now
+        self.deletedAt = nil
+        self.issueRemoteId = nil
+    }
+
+    func markDeleted() {
+        deletedAt = .now
+        updatedAt = deletedAt ?? .now
     }
 
     var key: String { "u:\(id.uuidString)" }
@@ -47,7 +57,7 @@ final class UserNote {
 enum NotesExport {
     static func markdown(_ notes: [UserNote]) -> String {
         var out = "# 晨读 · 我的笔记\n"
-        let groups = Dictionary(grouping: notes, by: \.issueDate)
+        let groups = Dictionary(grouping: notes.filter { $0.deletedAt == nil }, by: \.issueDate)
         for date in groups.keys.sorted(by: >) {
             let items = groups[date]!.sorted { ($0.paragraphIndex, $0.start) < ($1.paragraphIndex, $1.start) }
             out += "\n## \(date) · \(items.first?.issueTitle ?? "")\n"
