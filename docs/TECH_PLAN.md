@@ -4,7 +4,7 @@
 
 ## 本计划锁定的实现选择
 
-架构第 13 节里还开着的问题，下面四条先定死，避免步骤互相等待。其余仍按架构。
+架构第 13 节里还开着的问题，下面先定死，避免步骤互相等待。其余仍按架构。第 12 节的分阶段兜底不再执行：iOS 和 Web 只有 Supabase 一条数据路径，没有静态站回退，也没有过渡期。现有 Vercel 站保持原样，本计划不改它、不部署、也不接管它的每日发布。
 
 | 选择 | 决定 |
 |---|---|
@@ -12,6 +12,7 @@
 | Web | 新目录 `apps/web`：Vite + React + `supabase-js`。无 BFF。密钥和 service role 不进这个包。单独的 Vercel 项目。现有静态站不动。 |
 | 生成进程 | 抓取、模型、TTS 跑在 `packages/pipeline` 的 worker CLI 里。Edge Function 只做入队和领取调度，不在里面合成音频。 |
 | 登录 | v1 同时做 Sign in with Apple 和邮箱 magic link。密码登录不做。 |
+| 数据路径 | 只有 Supabase。iOS 不解析静态站 HTML，不读 `issues.json`，不保留双路径。未登录只显示登录。 |
 
 ## 仓库布局（Step 1 落地）
 
@@ -165,19 +166,19 @@ service role、Vault 解密、cron 密钥只放 worker / Edge 的环境，不进
 
 ### Step 14 — iOS 登录
 
-- **目标**：App 有 Supabase session，仍能在未登录时读静态站。
-- **交付**：`Chendu/Auth/`（Apple + magic link）；session 存 Keychain；未登录走现有 `IssueStore`。
+- **目标**：App 只有登录后的 Supabase session。未登录只显示登录，不读任何公开站点。
+- **交付**：`Chendu/Auth/`（Apple + magic link）；session 存 Keychain。根界面在无 session 时只渲染登录页。
 - **依赖**：Step 6。与 Step 12 并行。
-- **验收**：模拟器 magic link（Inbucket）登入；真机 Apple 登入后 `profiles` 有行。退出后本地期次缓存还在，笔记还在。现有 UI 冒烟在未登录路径仍通过。
+- **验收**：模拟器 magic link（Inbucket）登入；真机 Apple 登入后 `profiles` 有行。退出后回到登录页，本地笔记仍在。工程里不再有读取 `chendu-english.vercel.app` 或解析 HTML 的运行路径。
 - **工作量**：M。
 - **你要做的**：Xcode capability 与 Apple Services ID（见汇总表）。
 
-### Step 15 — iOS 数据层改到 Supabase，保留静态兜底
+### Step 15 — iOS 数据层只读 Supabase
 
-- **目标**：阅读器不改 UI，只换 `Issue` 的来源。
-- **交付**：`Issue` 映射（issues + 嵌套 annotations/vocab/patterns/audio）；列表按 `issue_date desc`；音频 signed URL 进现有离线缓存。登录且账号内有期时用 Supabase；否则保持现在的 JSON / HTML。
+- **目标**：阅读器 UI 不变，`Issue` 只来自 Supabase。
+- **交付**：删除 `SiteParser`、HTML 解析、`issues.json` 和静态站 URL。`Issue` 映射 issues 及嵌套 annotations / vocab / patterns / audio；列表按 `issue_date desc`；音频 signed URL 进离线缓存。
 - **依赖**：Step 7、14。有一条 Step 12 产生的期最好，没有也能用夹具行。
-- **验收**：测试账号能打开云端一期、点开批注、播放或下载 mp3。断网时打开已缓存的那期。未登录仍打开 `chendu-english.vercel.app` 的最新一期。
+- **验收**：测试账号能打开云端一期、点开批注、播放或下载 mp3。断网时打开已缓存的那期。未登录只看到登录页。仓库里没有第二套期次来源。
 - **工作量**：L。
 - **你要做的**：无。
 
@@ -208,14 +209,14 @@ service role、Vault 解密、cron 密钥只放 worker / Edge 的环境，不进
 - **工作量**：L。
 - **你要做的**：建 Vercel 项目，只配 URL 和 anon key。
 
-### Step 19 — 现有三期与每日发布
+### Step 19 — 导入已有三期
 
-- **目标**：已发布的 2026-10-09 / 10 / 11 在账号里可读；手写发布可以停，但停之前静态站仍每天能开。
-- **交付**：一次性脚本：解析这三期的公开 HTML（或已有的 `issue.json` 形状），为**指定的一个 user_id** 写入 issue 元数据、节选和批注，`config_snapshot.origin = legacy`。不把全文复制给其他用户。音频：把现有 mp3 拷进该用户的 Storage 路径，或阅读器在 `origin=legacy` 时继续用静态站 URL。README 写明：worker 连续成功 7 天后，才停止每天手写发布。
+- **目标**：把 2026-10-09 / 10 / 11 写进指定账号。没有过渡期，没有双路径，不改线上站，不停、也不接管每日发布。
+- **交付**：一次性导入脚本。输入是这三期已经整理好的 JSON（或脚本内的同等夹具），输出是指定 `user_id` 下的 article、issue、批注和音频对象。`config_snapshot.origin = import`。音频写入该用户的 Storage 路径。脚本默认连本地库；不提供「继续读静态站」的开关。
 - **依赖**：Step 12、15。
-- **验收**：该用户在 App 里看到这三期，顺序、批注、词数与网站一致；用另一个新账号登录看不到这三期的 `articles.raw_text`。
+- **验收**：对本地库跑脚本后，该用户能读到这三期，顺序和批注与夹具一致；另一个用户读不到这些 `articles.raw_text`。脚本不访问、不写入 `chendu-english.vercel.app`，也不部署。
 - **工作量**：M。
-- **你要做的**：指定导入到哪个账号（你自己的）。确认那 7 天之前仍由你发布静态站。
+- **你要做的**：要导入线上库时，自己指定账号并在本地执行。本计划不代跑生产导入。
 
 ### Step 20 — CI、可观测、安全复查
 
@@ -244,11 +245,11 @@ service role、Vault 解密、cron 密钥只放 worker / Edge 的环境，不进
 | 12 | worker：队列、重试、费用、snapshot | 3–5、7、10、11 | L |
 | 13 | cron 入队、worker 进程 | 6、12 | M |
 | 14 | iOS 登录 | 6 | M |
-| 15 | iOS 读 Supabase，保留静态兜底 | 7、14 | L |
+| 15 | iOS 只读 Supabase | 7、14 | L |
 | 16 | iOS 全部设置 | 5、14 | L |
 | 17 | 离线与笔记同步 | 4、15 | L |
 | 18 | Web | 6、12 | L |
-| 19 | 导入已有三期，再停手写发布 | 12、15 | M |
+| 19 | 导入已有三期到指定账号 | 12、15 | M |
 | 20 | CI、日志、密钥扫描 | 12、15 | M |
 
 可并行：5 与 3；8 和 9 与 2–4；14 与 12；18 与 15。
