@@ -1,0 +1,18 @@
+:root {
+  color: #22201c;
+  background: #fbf8f1;
+  font-family: "Iowan Old Style", Palatino, "Songti SC", serif;
+}
+
+body { margin: 0; }
+button, input, textarea, select { font: inherit; }
+main { max-width: 720px; margin: 0 auto; padding: 24px; }
+nav { display: flex; gap: 12px; align-items: baseline; margin-bottom: 24px; }
+nav button { background: transparent; border: 0; padding: 0; color: #6f6a60; }
+nav button.section { font-family: "Ma Shan Zheng", "Kaiti SC", cursive; font-size: 1.6rem; }
+nav button[aria-current="page"] { color: #c2362b; }
+article p { font-size: 1.15rem; line-height: 1.7; }
+.note { background: #fff; border: 1px solid #e7e0d0; padding: 12px; margin-top: 8px; }
+.wordmark { font-family: "Ma Shan Zheng", "Kaiti SC", cursive; font-size: 3rem; margin: 0; }
+label { display: block; margin: 12px 0; }
+input, textarea { width: 100%; box-sizing: border-box; padding: 8px; }

@@ -4,3 +4,5 @@ DerivedData/
 *.xcresult
 xcuserdata/
 *.xcuserstate
+node_modules/
+dist/

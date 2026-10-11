@@ -54,7 +54,17 @@ anon key 用 `supabase status -o env` 里的 `ANON_KEY`。不要把 service role
 
 ## Web（Step 18）
 
-新建一个 Vercel 项目，只填 `SUPABASE_URL` 和 anon key。不要填 service role。不要改现在的静态站项目，也不要部署到 `chendu-english.vercel.app`。
+本地先装依赖再开页面。anon key 用 `supabase status -o env` 里的 `ANON_KEY`。
+
+```bash
+cd apps/web
+npm install
+VITE_SUPABASE_URL=http://127.0.0.1:54321 VITE_SUPABASE_ANON_KEY=<anon key> npm run dev
+```
+
+`npm test` 会构建，并确认产物里没有 service role。不要设置 service role。
+
+要给别人用浏览器时，新建一个 Vercel 项目，只填 `VITE_SUPABASE_URL` 和 `VITE_SUPABASE_ANON_KEY`。不要填 service role。不要改现在的静态站项目，也不要部署到 `chendu-english.vercel.app`。这一步没有创建或部署 Vercel 项目。
 
 ## 导入已有三期（Step 19）
 
