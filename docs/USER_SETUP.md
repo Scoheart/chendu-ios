@@ -89,3 +89,9 @@ deno run --allow-read --allow-env --allow-net \
 ```
 
 要写入托管项目时，你自己把 `SUPABASE_URL` 指到那个项目，带上 `--confirm-remote`，并自己准备 service role。不要把 key 写进仓库。脚本不会改 `chendu-english.vercel.app`，也不会停掉每天的手写发布。本仓库没有对线上库执行过导入。
+
+## CI（Step 20）
+
+`.github/workflows/ci.yml` 会跑 `deno test`、网页构建和产物扫描、`Chendu/` 与 `apps/web/` 的密钥扫描、本地 Supabase 的 SQL 与 worker 脚本，以及 iOS 的 `ChenduTests`。不跑对着线上站的 UI 冒烟，也不部署。失败 job 的 `last_error` 由 `supabase/tests/run_worker.sh` 按 `job_id` 查到，401 时必须是 `key needs resave`，里面没有 key。
+
+如果仓库的 Actions 还没打开，到 GitHub → Settings → Actions → General 打开它。这一步没有替你打开权限。工作流要等这个权限打开之后才会跑。

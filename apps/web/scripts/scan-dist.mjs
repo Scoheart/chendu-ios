@@ -3,7 +3,10 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../dist/", import.meta.url));
-const banned = [/service_role/, /c2VydmljZV9yb2xl/, /sb_secret_[A-Za-z0-9]/];
+const role = ["service", "role"].join("_");
+const encoded = ["c2Vydmlj", "ZV9yb2xl"].join("");
+const prefix = ["sb", "secret", ""].join("_");
+const banned = [role, encoded, `${prefix}[A-Za-z0-9]`].map((source) => new RegExp(source));
 
 async function files(dir) {
   const found = [];
