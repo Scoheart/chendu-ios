@@ -1,6 +1,6 @@
 import Foundation
 
-/// Archive entry. Also the element type of the public feed `/issues.json`.
+/// Archive entry mapped from a Supabase `issues` row.
 struct IssueSummary: Codable, Hashable, Identifiable {
     var date: String
     var topic: String
@@ -17,7 +17,7 @@ struct FeedIndex: Codable {
     var issues: [IssueSummary]
 }
 
-/// One daily issue. Same shape as `/issues/<date>/issue.json`; see `site-feed/build_app_feed.py` in the artifacts.
+/// One daily issue. The reader still uses this shape; the fields come from Supabase.
 struct Issue: Codable, Hashable, Identifiable {
     var date: String
     var topic: String

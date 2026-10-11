@@ -79,7 +79,7 @@ struct ReaderView: View {
                 Button("放大字号", systemImage: "textformat.size.larger") { fontSize = min(fontSize + 1, 26) }
                 Button("缩小字号", systemImage: "textformat.size.smaller") { fontSize = max(fontSize - 1, 15) }
                 Divider()
-                ShareLink(item: SiteClient.shared.url("issues/\(date)/")) { Label("分享网页版", systemImage: "square.and.arrow.up") }
+                ShareLink(item: "晨读 \(date)") { Label("分享", systemImage: "square.and.arrow.up") }
             } label: {
                 Image(systemName: "textformat.size")
             }
