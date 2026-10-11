@@ -17,6 +17,7 @@
 		2EEA55F9161A42DDF1CC61A3 /* UserNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7047B3E4E7A98D4EC4BFF4E /* UserNote.swift */; };
 		301F9B0E6A5F53F7BC838ECD /* issue-2026-10-09.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B4E1419D560D8421D3C3305 /* issue-2026-10-09.json */; };
 		30753F68F87E1F678CC462AB /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C322574B934B62626C6A08E /* AudioPlayer.swift */; };
+		3CE955FFDF4782A071AFDF66 /* SettingsClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF304E036F513A755C7B4D32 /* SettingsClientTests.swift */; };
 		5279824908EE528D052225AD /* DailyReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DEB5F1C2CC51E495BB2BDA /* DailyReminder.swift */; };
 		56B1C58B113D5E83420F1693 /* issue-2026-10-11.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5C56A8EE41F81A45D6B52A /* issue-2026-10-11.json */; };
 		5A7B1764BE82B5FEE7AC01C6 /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897C7EB0113937F5DEA05EDB /* AuthClient.swift */; };
@@ -33,6 +34,7 @@
 		B0B881AFD605AC47EF882830 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E2725406960D7E4F61F8E3 /* LoginView.swift */; };
 		B35F84D91F40EA157BA0BFCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3B7E308B28A7BCB9BCC0A7E /* Assets.xcassets */; };
 		B36E0C54D048D3D79B55FCC2 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08432827E4ED7F185046DB5B /* SessionStore.swift */; };
+		BEEE9E9D57FE87179FE89D3E /* SettingsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2221C32163AAFEEF70EE2 /* SettingsClient.swift */; };
 		C5D80E678CCD6E7BCCD06E16 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175434ABDFAE6952F0BA7025 /* Theme.swift */; };
 		EAA96214C3A03C418AD0BB43 /* SmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE86DB2998FFBBCDD0B1FAA3 /* SmokeTests.swift */; };
 		F319F1D4C0AF5AAA15705EA5 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1D9C895CAA9F53DC244BDB /* Issue.swift */; };
@@ -79,6 +81,7 @@
 		897C7EB0113937F5DEA05EDB /* AuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
 		8BC16B55D3CE6A40AFA62976 /* IssueListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListView.swift; sourceTree = "<group>"; };
 		8F0F51386BD10D3CF6CBAAF9 /* IssueMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueMapper.swift; sourceTree = "<group>"; };
+		A3D2221C32163AAFEEF70EE2 /* SettingsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsClient.swift; sourceTree = "<group>"; };
 		B006912AA29BB7CCF5E5BD12 /* IssueMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueMapperTests.swift; sourceTree = "<group>"; };
 		B4B35792C9AD26EEC8182743 /* OFL-MaShanZheng.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "OFL-MaShanZheng.txt"; sourceTree = "<group>"; };
 		B82FA36B04B6112B9300825E /* ChenduUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ChenduUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +92,7 @@
 		CACC9D352FF8030619C3309C /* issue-2026-10-10.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "issue-2026-10-10.json"; sourceTree = "<group>"; };
 		F7047B3E4E7A98D4EC4BFF4E /* UserNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNote.swift; sourceTree = "<group>"; };
 		FA5C56A8EE41F81A45D6B52A /* issue-2026-10-11.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "issue-2026-10-11.json"; sourceTree = "<group>"; };
+		FF304E036F513A755C7B4D32 /* SettingsClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -118,6 +122,7 @@
 				833C846EC939CFD65793D1E8 /* IssueCache.swift */,
 				8F0F51386BD10D3CF6CBAAF9 /* IssueMapper.swift */,
 				4E86FD57A47FDD983B2C26C9 /* IssueStore.swift */,
+				A3D2221C32163AAFEEF70EE2 /* SettingsClient.swift */,
 				301D8FF3454649BA50E65336 /* SupabaseIssues.swift */,
 			);
 			path = Data;
@@ -152,6 +157,7 @@
 			children = (
 				5234F553FFF2D540BD7B4F7A /* AuthClientTests.swift */,
 				B006912AA29BB7CCF5E5BD12 /* IssueMapperTests.swift */,
+				FF304E036F513A755C7B4D32 /* SettingsClientTests.swift */,
 				B08AEDCD56793172CA14BE94 /* Fixtures */,
 			);
 			path = ChenduTests;
@@ -397,6 +403,7 @@
 				014A91DC1ABA6886B1154F75 /* ParagraphText.swift in Sources */,
 				87428F792F06B532B19CCA12 /* ReaderView.swift in Sources */,
 				B36E0C54D048D3D79B55FCC2 /* SessionStore.swift in Sources */,
+				BEEE9E9D57FE87179FE89D3E /* SettingsClient.swift in Sources */,
 				869CBE349D4A2799C07E449E /* SettingsView.swift in Sources */,
 				AA75060322E6D11977E9372A /* SupabaseIssues.swift in Sources */,
 				C5D80E678CCD6E7BCCD06E16 /* Theme.swift in Sources */,
@@ -410,6 +417,7 @@
 			files = (
 				24C2A369BC309CEACEC71E06 /* AuthClientTests.swift in Sources */,
 				6F2A0C5E6F8E1D3E124644C9 /* IssueMapperTests.swift in Sources */,
+				3CE955FFDF4782A071AFDF66 /* SettingsClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
