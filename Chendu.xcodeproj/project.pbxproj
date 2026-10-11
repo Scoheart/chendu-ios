@@ -1,0 +1,828 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		014A91DC1ABA6886B1154F75 /* ParagraphText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3122719653A39579937E4B5F /* ParagraphText.swift */; };
+		02219B257976D0876B897918 /* SiteParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D8C76AE3E9B3F4EE5C2457 /* SiteParser.swift */; };
+		097F134A89D3B05600C2C9F5 /* OFL-MaShanZheng.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4B35792C9AD26EEC8182743 /* OFL-MaShanZheng.txt */; };
+		0B999D316613DD07C091BABA /* IssueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86FD57A47FDD983B2C26C9 /* IssueStore.swift */; };
+		110ED1EC159A2621BD37B627 /* IssueListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC16B55D3CE6A40AFA62976 /* IssueListView.swift */; };
+		134AD76A04CBCE5C70908A17 /* issue-2026-10-10.html in Resources */ = {isa = PBXBuildFile; fileRef = 52BA75918895D6C9F33E96B8 /* issue-2026-10-10.html */; };
+		1B305E30C03FB89BEA3F7C5F /* ChenduApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277B655E2B4B99D9BF2DFBE9 /* ChenduApp.swift */; };
+		1EA8598F5E20BDB70081BDD9 /* NoteCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0910AD40478B865CD1DFB90 /* NoteCards.swift */; };
+		2EEA55F9161A42DDF1CC61A3 /* UserNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7047B3E4E7A98D4EC4BFF4E /* UserNote.swift */; };
+		2F9D12FCB0FCD0CEC002A24B /* issue-2026-10-09.html in Resources */ = {isa = PBXBuildFile; fileRef = 96F68C72712367F8370E21B8 /* issue-2026-10-09.html */; };
+		301F9B0E6A5F53F7BC838ECD /* issue-2026-10-09.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B4E1419D560D8421D3C3305 /* issue-2026-10-09.json */; };
+		30753F68F87E1F678CC462AB /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C322574B934B62626C6A08E /* AudioPlayer.swift */; };
+		3E40314C5A8796CE0C1D65D1 /* issue-2026-10-11.html in Resources */ = {isa = PBXBuildFile; fileRef = 016D40EB4C70D1F6B8C37BAE /* issue-2026-10-11.html */; };
+		5279824908EE528D052225AD /* DailyReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DEB5F1C2CC51E495BB2BDA /* DailyReminder.swift */; };
+		56B1C58B113D5E83420F1693 /* issue-2026-10-11.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5C56A8EE41F81A45D6B52A /* issue-2026-10-11.json */; };
+		629D1C9D689F43C200EAEA6D /* IssueCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833C846EC939CFD65793D1E8 /* IssueCache.swift */; };
+		6E4371F3BCF5D67658B5B3F7 /* IssueSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA021D6258F6B2296F2C99DB /* IssueSections.swift */; };
+		869CBE349D4A2799C07E449E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66063643487F6D302057CFBE /* SettingsView.swift */; };
+		87428F792F06B532B19CCA12 /* ReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471A39F9F1D482394CB3DA75 /* ReaderView.swift */; };
+		91840331E317D98D74D929E9 /* MyNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792FE833266B88D83F7F876D /* MyNotesView.swift */; };
+		99EE63F90E9AE77F7A530509 /* issue-2026-10-10.json in Resources */ = {isa = PBXBuildFile; fileRef = CACC9D352FF8030619C3309C /* issue-2026-10-10.json */; };
+		A82FEFEAA3A7C4ED5A5BE52F /* MaShanZheng-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47DF2599F9807F779D02D006 /* MaShanZheng-Regular.ttf */; };
+		B35F84D91F40EA157BA0BFCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3B7E308B28A7BCB9BCC0A7E /* Assets.xcassets */; };
+		BDD32CBCD5745F2E1010EAEC /* SiteParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63721CF6C7A112DC04F4959E /* SiteParserTests.swift */; };
+		C5D80E678CCD6E7BCCD06E16 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175434ABDFAE6952F0BA7025 /* Theme.swift */; };
+		CEA15B3C88E648C9BC9CA68E /* HTMLDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0A72BAA3389B9BC645FA4 /* HTMLDocument.swift */; };
+		D8B77C1B8383302A6EBB58C8 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB6830041591F4489ECF332 /* Network.swift */; };
+		EAA96214C3A03C418AD0BB43 /* SmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE86DB2998FFBBCDD0B1FAA3 /* SmokeTests.swift */; };
+		F319F1D4C0AF5AAA15705EA5 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1D9C895CAA9F53DC244BDB /* Issue.swift */; };
+		F532025A64DD2360670177B7 /* home.html in Resources */ = {isa = PBXBuildFile; fileRef = 9A320D45101F6E65A48D7053 /* home.html */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		82DA585431915B8A80B803D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE23C9E27D913E9F97FC5B8F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3390A2617830EB4A5B622877;
+			remoteInfo = Chendu;
+		};
+		EB05A0D76B50943F90C70228 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE23C9E27D913E9F97FC5B8F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3390A2617830EB4A5B622877;
+			remoteInfo = Chendu;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		016D40EB4C70D1F6B8C37BAE /* issue-2026-10-11.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "issue-2026-10-11.html"; sourceTree = "<group>"; };
+		175434ABDFAE6952F0BA7025 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		1DC0A72BAA3389B9BC645FA4 /* HTMLDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLDocument.swift; sourceTree = "<group>"; };
+		1FB6830041591F4489ECF332 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		277B655E2B4B99D9BF2DFBE9 /* ChenduApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChenduApp.swift; sourceTree = "<group>"; };
+		3122719653A39579937E4B5F /* ParagraphText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphText.swift; sourceTree = "<group>"; };
+		3C322574B934B62626C6A08E /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		471A39F9F1D482394CB3DA75 /* ReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderView.swift; sourceTree = "<group>"; };
+		47DF2599F9807F779D02D006 /* MaShanZheng-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaShanZheng-Regular.ttf"; sourceTree = "<group>"; };
+		48DEB5F1C2CC51E495BB2BDA /* DailyReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReminder.swift; sourceTree = "<group>"; };
+		4B4E1419D560D8421D3C3305 /* issue-2026-10-09.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "issue-2026-10-09.json"; sourceTree = "<group>"; };
+		4E86FD57A47FDD983B2C26C9 /* IssueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueStore.swift; sourceTree = "<group>"; };
+		50257CD152EFC65D83D89109 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		52BA75918895D6C9F33E96B8 /* issue-2026-10-10.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "issue-2026-10-10.html"; sourceTree = "<group>"; };
+		5911F94C5735B3A5C6B84018 /* ChenduTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ChenduTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		62D8C76AE3E9B3F4EE5C2457 /* SiteParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteParser.swift; sourceTree = "<group>"; };
+		63721CF6C7A112DC04F4959E /* SiteParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteParserTests.swift; sourceTree = "<group>"; };
+		66063643487F6D302057CFBE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		792FE833266B88D83F7F876D /* MyNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNotesView.swift; sourceTree = "<group>"; };
+		7B1D9C895CAA9F53DC244BDB /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
+		833C846EC939CFD65793D1E8 /* IssueCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCache.swift; sourceTree = "<group>"; };
+		850AF381E2B9C36F08A38B64 /* Chendu.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Chendu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BC16B55D3CE6A40AFA62976 /* IssueListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListView.swift; sourceTree = "<group>"; };
+		96F68C72712367F8370E21B8 /* issue-2026-10-09.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "issue-2026-10-09.html"; sourceTree = "<group>"; };
+		9A320D45101F6E65A48D7053 /* home.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = home.html; sourceTree = "<group>"; };
+		B4B35792C9AD26EEC8182743 /* OFL-MaShanZheng.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "OFL-MaShanZheng.txt"; sourceTree = "<group>"; };
+		B82FA36B04B6112B9300825E /* ChenduUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ChenduUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA021D6258F6B2296F2C99DB /* IssueSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueSections.swift; sourceTree = "<group>"; };
+		BE86DB2998FFBBCDD0B1FAA3 /* SmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeTests.swift; sourceTree = "<group>"; };
+		C0910AD40478B865CD1DFB90 /* NoteCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCards.swift; sourceTree = "<group>"; };
+		C3B7E308B28A7BCB9BCC0A7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CACC9D352FF8030619C3309C /* issue-2026-10-10.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "issue-2026-10-10.json"; sourceTree = "<group>"; };
+		F7047B3E4E7A98D4EC4BFF4E /* UserNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNote.swift; sourceTree = "<group>"; };
+		FA5C56A8EE41F81A45D6B52A /* issue-2026-10-11.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "issue-2026-10-11.json"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1DAEE146B8A4986116E65864 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				850AF381E2B9C36F08A38B64 /* Chendu.app */,
+				5911F94C5735B3A5C6B84018 /* ChenduTests.xctest */,
+				B82FA36B04B6112B9300825E /* ChenduUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		353E257AC34911D7A2CFB286 = {
+			isa = PBXGroup;
+			children = (
+				6489484C2AC1979625174D7F /* Chendu */,
+				78493D15672A0944A8D53AF0 /* ChenduTests */,
+				ADE659655698650A7BA195DD /* ChenduUITests */,
+				1DAEE146B8A4986116E65864 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3E574AAD7E92FE2745E62FA6 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1DC0A72BAA3389B9BC645FA4 /* HTMLDocument.swift */,
+				833C846EC939CFD65793D1E8 /* IssueCache.swift */,
+				4E86FD57A47FDD983B2C26C9 /* IssueStore.swift */,
+				1FB6830041591F4489ECF332 /* Network.swift */,
+				62D8C76AE3E9B3F4EE5C2457 /* SiteParser.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		6489484C2AC1979625174D7F /* Chendu */ = {
+			isa = PBXGroup;
+			children = (
+				821D4F7D46D19EE1453CBC0E /* App */,
+				CBB072A2C81FBC6006DF899F /* Audio */,
+				3E574AAD7E92FE2745E62FA6 /* Data */,
+				E1CAEBBBCB9C9AB2652A6405 /* Models */,
+				E3010F5F52CB66793CE7723D /* Resources */,
+				EBB809277FC8CE6A58EB0AED /* Support */,
+				D2B160F711720B78964E1C6A /* Views */,
+			);
+			path = Chendu;
+			sourceTree = "<group>";
+		};
+		78493D15672A0944A8D53AF0 /* ChenduTests */ = {
+			isa = PBXGroup;
+			children = (
+				63721CF6C7A112DC04F4959E /* SiteParserTests.swift */,
+				B08AEDCD56793172CA14BE94 /* Fixtures */,
+			);
+			path = ChenduTests;
+			sourceTree = "<group>";
+		};
+		821D4F7D46D19EE1453CBC0E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				277B655E2B4B99D9BF2DFBE9 /* ChenduApp.swift */,
+				48DEB5F1C2CC51E495BB2BDA /* DailyReminder.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		916E08458DF80F40DD91A27F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				47DF2599F9807F779D02D006 /* MaShanZheng-Regular.ttf */,
+				B4B35792C9AD26EEC8182743 /* OFL-MaShanZheng.txt */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		ADE659655698650A7BA195DD /* ChenduUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BE86DB2998FFBBCDD0B1FAA3 /* SmokeTests.swift */,
+			);
+			path = ChenduUITests;
+			sourceTree = "<group>";
+		};
+		B08AEDCD56793172CA14BE94 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				9A320D45101F6E65A48D7053 /* home.html */,
+				96F68C72712367F8370E21B8 /* issue-2026-10-09.html */,
+				4B4E1419D560D8421D3C3305 /* issue-2026-10-09.json */,
+				52BA75918895D6C9F33E96B8 /* issue-2026-10-10.html */,
+				CACC9D352FF8030619C3309C /* issue-2026-10-10.json */,
+				016D40EB4C70D1F6B8C37BAE /* issue-2026-10-11.html */,
+				FA5C56A8EE41F81A45D6B52A /* issue-2026-10-11.json */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		CBB072A2C81FBC6006DF899F /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				3C322574B934B62626C6A08E /* AudioPlayer.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		D2B160F711720B78964E1C6A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8BC16B55D3CE6A40AFA62976 /* IssueListView.swift */,
+				BA021D6258F6B2296F2C99DB /* IssueSections.swift */,
+				792FE833266B88D83F7F876D /* MyNotesView.swift */,
+				C0910AD40478B865CD1DFB90 /* NoteCards.swift */,
+				3122719653A39579937E4B5F /* ParagraphText.swift */,
+				471A39F9F1D482394CB3DA75 /* ReaderView.swift */,
+				66063643487F6D302057CFBE /* SettingsView.swift */,
+				175434ABDFAE6952F0BA7025 /* Theme.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E1CAEBBBCB9C9AB2652A6405 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7B1D9C895CAA9F53DC244BDB /* Issue.swift */,
+				F7047B3E4E7A98D4EC4BFF4E /* UserNote.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E3010F5F52CB66793CE7723D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C3B7E308B28A7BCB9BCC0A7E /* Assets.xcassets */,
+				916E08458DF80F40DD91A27F /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EBB809277FC8CE6A58EB0AED /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				50257CD152EFC65D83D89109 /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3390A2617830EB4A5B622877 /* Chendu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82C03D416154485D907BD92C /* Build configuration list for PBXNativeTarget "Chendu" */;
+			buildPhases = (
+				381BE9144AF9F914D4D04E7A /* Sources */,
+				467D7F9A42DCF79E5FAFCBAE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Chendu;
+			packageProductDependencies = (
+			);
+			productName = Chendu;
+			productReference = 850AF381E2B9C36F08A38B64 /* Chendu.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CDACDEAACD925F41B7E75EBA /* ChenduUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC9010D881F1491DD0790E36 /* Build configuration list for PBXNativeTarget "ChenduUITests" */;
+			buildPhases = (
+				1B2AFA5E62DFD6B1CF6FC8F8 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7E59A500C55E036C46349448 /* PBXTargetDependency */,
+			);
+			name = ChenduUITests;
+			packageProductDependencies = (
+			);
+			productName = ChenduUITests;
+			productReference = B82FA36B04B6112B9300825E /* ChenduUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		D18E9FB4AD0D8A776362C308 /* ChenduTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3ABEB4FFBD6A1A7B895AA5CA /* Build configuration list for PBXNativeTarget "ChenduTests" */;
+			buildPhases = (
+				3DBB494EDF10ADF70174D1FA /* Sources */,
+				43136A254BE78C83D48FCA89 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				011C6CDE35EF7734B899D09D /* PBXTargetDependency */,
+			);
+			name = ChenduTests;
+			packageProductDependencies = (
+			);
+			productName = ChenduTests;
+			productReference = 5911F94C5735B3A5C6B84018 /* ChenduTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FE23C9E27D913E9F97FC5B8F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					3390A2617830EB4A5B622877 = {
+						ProvisioningStyle = Automatic;
+					};
+					CDACDEAACD925F41B7E75EBA = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3390A2617830EB4A5B622877;
+					};
+					D18E9FB4AD0D8A776362C308 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = AD4522FB6390D5588D719A98 /* Build configuration list for PBXProject "Chendu" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = "zh-Hans";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 353E257AC34911D7A2CFB286;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3390A2617830EB4A5B622877 /* Chendu */,
+				D18E9FB4AD0D8A776362C308 /* ChenduTests */,
+				CDACDEAACD925F41B7E75EBA /* ChenduUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		43136A254BE78C83D48FCA89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F532025A64DD2360670177B7 /* home.html in Resources */,
+				2F9D12FCB0FCD0CEC002A24B /* issue-2026-10-09.html in Resources */,
+				301F9B0E6A5F53F7BC838ECD /* issue-2026-10-09.json in Resources */,
+				134AD76A04CBCE5C70908A17 /* issue-2026-10-10.html in Resources */,
+				99EE63F90E9AE77F7A530509 /* issue-2026-10-10.json in Resources */,
+				3E40314C5A8796CE0C1D65D1 /* issue-2026-10-11.html in Resources */,
+				56B1C58B113D5E83420F1693 /* issue-2026-10-11.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		467D7F9A42DCF79E5FAFCBAE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B35F84D91F40EA157BA0BFCB /* Assets.xcassets in Resources */,
+				A82FEFEAA3A7C4ED5A5BE52F /* MaShanZheng-Regular.ttf in Resources */,
+				097F134A89D3B05600C2C9F5 /* OFL-MaShanZheng.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1B2AFA5E62DFD6B1CF6FC8F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAA96214C3A03C418AD0BB43 /* SmokeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		381BE9144AF9F914D4D04E7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30753F68F87E1F678CC462AB /* AudioPlayer.swift in Sources */,
+				1B305E30C03FB89BEA3F7C5F /* ChenduApp.swift in Sources */,
+				5279824908EE528D052225AD /* DailyReminder.swift in Sources */,
+				CEA15B3C88E648C9BC9CA68E /* HTMLDocument.swift in Sources */,
+				F319F1D4C0AF5AAA15705EA5 /* Issue.swift in Sources */,
+				629D1C9D689F43C200EAEA6D /* IssueCache.swift in Sources */,
+				110ED1EC159A2621BD37B627 /* IssueListView.swift in Sources */,
+				6E4371F3BCF5D67658B5B3F7 /* IssueSections.swift in Sources */,
+				0B999D316613DD07C091BABA /* IssueStore.swift in Sources */,
+				91840331E317D98D74D929E9 /* MyNotesView.swift in Sources */,
+				D8B77C1B8383302A6EBB58C8 /* Network.swift in Sources */,
+				1EA8598F5E20BDB70081BDD9 /* NoteCards.swift in Sources */,
+				014A91DC1ABA6886B1154F75 /* ParagraphText.swift in Sources */,
+				87428F792F06B532B19CCA12 /* ReaderView.swift in Sources */,
+				869CBE349D4A2799C07E449E /* SettingsView.swift in Sources */,
+				02219B257976D0876B897918 /* SiteParser.swift in Sources */,
+				C5D80E678CCD6E7BCCD06E16 /* Theme.swift in Sources */,
+				2EEA55F9161A42DDF1CC61A3 /* UserNote.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DBB494EDF10ADF70174D1FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDD32CBCD5745F2E1010EAEC /* SiteParserTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		011C6CDE35EF7734B899D09D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3390A2617830EB4A5B622877 /* Chendu */;
+			targetProxy = EB05A0D76B50943F90C70228 /* PBXContainerItemProxy */;
+		};
+		7E59A500C55E036C46349448 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3390A2617830EB4A5B622877 /* Chendu */;
+			targetProxy = 82DA585431915B8A80B803D7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		065830D091A88343643338FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Chendu/Support/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.scoheart.chendu;
+				PRODUCT_NAME = Chendu;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		1BCF494D0CE189931080D52B /* Personal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.scoheart.chendu.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Chendu;
+			};
+			name = Personal;
+		};
+		226D8ED727873F990D719DD6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.scoheart.chendu.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chendu.app/Chendu";
+			};
+			name = Debug;
+		};
+		3DBFAF97FA56EDEE440B9B2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.scoheart.chendu.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chendu.app/Chendu";
+			};
+			name = Release;
+		};
+		4643E9FD6482A4735B475E40 /* Personal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.scoheart.chendu.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chendu.app/Chendu";
+			};
+			name = Personal;
+		};
+		4682438BC86772C89BF802F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.scoheart.chendu.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Chendu;
+			};
+			name = Debug;
+		};
+		805C50E20D30DDFC32BF1F86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.scoheart.chendu.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Chendu;
+			};
+			name = Release;
+		};
+		94DFA13FEF309EAACA7073C6 /* Personal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Personal;
+		};
+		A4063B48758A137E394CE3C1 /* Personal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = L9PM656L4T;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Chendu/Support/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.scoheart.chendu.dev;
+				PRODUCT_NAME = Chendu;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Personal;
+		};
+		A8B6253716F530D250841AEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Chendu/Support/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.scoheart.chendu;
+				PRODUCT_NAME = Chendu;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		B2288B9BFA5AED8232A9E3F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		D3B16149EDEF15B6CA3858DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3ABEB4FFBD6A1A7B895AA5CA /* Build configuration list for PBXNativeTarget "ChenduTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				226D8ED727873F990D719DD6 /* Debug */,
+				4643E9FD6482A4735B475E40 /* Personal */,
+				3DBFAF97FA56EDEE440B9B2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		82C03D416154485D907BD92C /* Build configuration list for PBXNativeTarget "Chendu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8B6253716F530D250841AEF /* Debug */,
+				A4063B48758A137E394CE3C1 /* Personal */,
+				065830D091A88343643338FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AD4522FB6390D5588D719A98 /* Build configuration list for PBXProject "Chendu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3B16149EDEF15B6CA3858DD /* Debug */,
+				94DFA13FEF309EAACA7073C6 /* Personal */,
+				B2288B9BFA5AED8232A9E3F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DC9010D881F1491DD0790E36 /* Build configuration list for PBXNativeTarget "ChenduUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4682438BC86772C89BF802F7 /* Debug */,
+				1BCF494D0CE189931080D52B /* Personal */,
+				805C50E20D30DDFC32BF1F86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FE23C9E27D913E9F97FC5B8F /* Project object */;
+}
