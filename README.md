@@ -58,6 +58,10 @@ The build number defaults to a UTC timestamp. Authentication uses an App Store C
 2. In App Store Connect, create the app (My Apps › + › New App) with bundle id `com.scoheart.chendu`. Register the identifier first under developer.apple.com › Identifiers if it doesn't appear in the list.
 3. After the first build finishes processing, go to TestFlight › Internal Testing, create a group, add yourself, and install the build with the TestFlight app on the iPhone.
 
+## What you still do by hand
+
+Hosted Supabase, Sign in with Apple, provider keys, the worker host, and the new Vercel project are listed in [docs/USER_SETUP.md](docs/USER_SETUP.md). Those steps are not done from this repo automatically.
+
 ## Layout
 
 ```
