@@ -75,6 +75,39 @@ docs/                 架构与实施计划
 
 产品只有 Supabase 一条数据路径。下面「Data source」描述的是当前已安装阅读器的行为；静态站解析会在 iOS 数据层那一步删掉，不保留兜底。
 
+## Worker
+
+`supabase/functions/run-jobs` only calls `enqueue_due`. Speech and the model run in the Deno worker, outside the edge function. On this Mac, launchd can poll once a minute:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.scoheart.chendu.worker</string>
+  <key>WorkingDirectory</key><string>/Users/scoheart/Code/scoheart/chendu-ios</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/scoheart/.deno/bin/deno</string>
+    <string>run</string>
+    <string>--allow-net</string>
+    <string>--allow-env</string>
+    <string>--allow-read</string>
+    <string>packages/pipeline/worker.ts</string>
+  </array>
+  <key>StartInterval</key><integer>60</integer>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>SUPABASE_URL</key><string>http://127.0.0.1:54321</string>
+    <key>SUPABASE_SERVICE_ROLE_KEY</key><string>set-this-outside-git</string>
+    <key>OPENAI_API_KEY</key><string>set-this-outside-git</string>
+  </dict>
+</dict>
+</plist>
+```
+
+Put the real keys in the plist on the machine, or in a file launchd reads that is not in git. Do not commit them.
+
 ## Develop
 
 ```bash
