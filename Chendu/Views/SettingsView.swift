@@ -44,11 +44,12 @@ struct SettingsView: View {
                     if let t = store.lastRefresh {
                         LabeledContent("上次刷新", value: t.formatted(date: .abbreviated, time: .shortened))
                     }
-                    Link("打开晨读网站", destination: SiteClient.baseURL)
+                    Button("退出登录") { SessionStore.live.clear() }
+                        .accessibilityIdentifier("signOut")
                 } header: {
-                    Text("数据")
+                    Text("账号")
                 } footer: {
-                    Text("优先读取 /issues.json；网站未部署 JSON 时自动改为解析网页，两者内容一致。笔记只保存在本机。")
+                    Text("退出后回到登录页。笔记留在这台设备上。")
                 }
 
                 Section("关于") {
