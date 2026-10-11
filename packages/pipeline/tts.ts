@@ -32,7 +32,7 @@ export type SynthResult =
 function providerError(status: number, body: string, apiKey: string): Error {
   const cleaned = redactSecrets(body.split(apiKey).join("[redacted]"));
   if (cleaned.includes(apiKey)) return new StopError("provider error");
-  if (status === 401 || status === 403) return new StopError(cleaned);
+  if (status === 401 || status === 403) return new StopError(cleaned, status);
   return new RetryableError(cleaned);
 }
 
