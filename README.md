@@ -23,6 +23,21 @@ The site generates the feed with `tools/build_app_feed.py` (not in this repo). I
 
 ## Run on your iPhone
 
+The **Personal** build configuration signs with the free Personal Team (`L9PM656L4T`) and the bundle id `com.scoheart.chendu.dev`, so the main id stays free for the paid team. Debug and Release are unchanged: `com.scoheart.chendu`, no team baked in. A free-team install expires after 7 days, and a device can hold only three such apps.
+
+```bash
+xcodebuild -project Chendu.xcodeproj -scheme Chendu -configuration Personal \
+  -destination 'id=<device-udid>' -allowProvisioningUpdates \
+  -derivedDataPath build/device build
+xcrun devicectl device install app --device <device-udid> \
+  build/device/Build/Products/Personal-iphoneos/Chendu.app
+xcrun devicectl device process launch --device <device-udid> com.scoheart.chendu.dev
+```
+
+With the paid team signed in to Xcode, use Debug or Release and `com.scoheart.chendu` instead; that install lasts about a year.
+
+## Run from Xcode
+
 1. Open `Chendu.xcodeproj` in Xcode.
 2. Select the **Chendu** target, open **Signing & Capabilities**, and choose your paid team under **Team**. Signing is automatic and the bundle id is `com.scoheart.chendu`.
 3. Connect the iPhone (or pair it over Wi-Fi), select it as the run destination, and press **Run** (⌘R).

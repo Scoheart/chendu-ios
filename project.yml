@@ -1,4 +1,9 @@
 name: Chendu
+configs:
+  Debug: debug
+  Release: release
+  # Direct install with the free Personal Team. Debug and Release keep com.scoheart.chendu for the paid team.
+  Personal: debug
 options:
   bundleIdPrefix: com.scoheart
   deploymentTarget:
@@ -47,6 +52,10 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         ENABLE_PREVIEWS: YES
+      configs:
+        Personal:
+          PRODUCT_BUNDLE_IDENTIFIER: com.scoheart.chendu.dev
+          DEVELOPMENT_TEAM: L9PM656L4T
   ChenduTests:
     type: bundle.unit-test
     platform: iOS
