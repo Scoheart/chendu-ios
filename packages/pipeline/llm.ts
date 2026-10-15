@@ -9,6 +9,12 @@ export class RetryableError extends Error {
 
 export class StopError extends Error {
   readonly retryable = false;
+  readonly status: number | null;
+
+  constructor(message: string, status: number | null = null) {
+    super(message);
+    this.status = status;
+  }
 }
 
 export interface Usage {
@@ -48,7 +54,7 @@ function fail(status: number, body: string, apiKey: string): Error {
   if (cleaned.includes(apiKey)) {
     return new StopError("provider error");
   }
-  if (status === 401 || status === 403) return new StopError(cleaned);
+  if (status === 401 || status === 403) return new StopError(cleaned, status);
   return new RetryableError(cleaned);
 }
 
