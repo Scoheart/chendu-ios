@@ -1,0 +1,95 @@
+name: Chendu
+configs:
+  Debug: debug
+  Release: release
+  # Direct install with the free Personal Team. Debug and Release keep com.scoheart.chendu for the paid team.
+  Personal: debug
+options:
+  bundleIdPrefix: com.scoheart
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+  developmentLanguage: zh-Hans
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: ""
+targets:
+  Chendu:
+    type: application
+    platform: iOS
+    sources:
+      - path: Chendu
+    info:
+      path: Chendu/Support/Info.plist
+      properties:
+        CFBundleDisplayName: 晨读
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDevelopmentRegion: zh-Hans
+        ITSAppUsesNonExemptEncryption: false
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+        UILaunchScreen:
+          UIColorName: Paper
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIBackgroundModes:
+          - audio
+          - fetch
+        BGTaskSchedulerPermittedIdentifiers:
+          - com.scoheart.chendu.refresh
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.scoheart.chendu
+        PRODUCT_NAME: Chendu
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_PREVIEWS: YES
+      configs:
+        Personal:
+          PRODUCT_BUNDLE_IDENTIFIER: com.scoheart.chendu.dev
+          DEVELOPMENT_TEAM: L9PM656L4T
+  ChenduTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: ChenduTests
+    dependencies:
+      - target: Chendu
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.scoheart.chendu.tests
+        GENERATE_INFOPLIST_FILE: YES
+  ChenduUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: ChenduUITests
+    dependencies:
+      - target: Chendu
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.scoheart.chendu.uitests
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  Chendu:
+    build:
+      targets:
+        Chendu: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: false
+      targets:
+        - ChenduTests
+        - ChenduUITests
+    archive:
+      config: Release
