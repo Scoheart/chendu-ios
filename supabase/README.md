@@ -9,6 +9,7 @@ supabase start
 supabase/tests/run_identity.sh
 supabase/tests/run_worker.sh
 supabase/tests/run_schedule.sh
+supabase/tests/run_import.sh
 ```
 
 `run_worker.sh` 用夹具 RSS 和假模型跑领取、入库、坏 JSON 重试，以及 401 停止。TTS 在没有 key 时记为 skipped。
