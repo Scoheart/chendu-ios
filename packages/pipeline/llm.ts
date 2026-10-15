@@ -106,7 +106,12 @@ function parseContent(provider: Provider, payload: Record<string, unknown>): { t
   };
 }
 
-export async function complete(args: CompleteArgs): Promise<CompleteResult> {
+interface ModelPayload {
+  json: unknown;
+  usage: Usage;
+}
+
+async function callProvider(args: CompleteArgs): Promise<ModelPayload> {
   const fetchImpl = args.fetchImpl ?? fetch;
   const headers: Record<string, string> = { "content-type": "application/json" };
   if (args.provider === "anthropic") {
@@ -135,15 +140,40 @@ export async function complete(args: CompleteArgs): Promise<CompleteResult> {
     throw new RetryableError("provider returned non-json");
   }
   const parsed = parseContent(args.provider, payload);
-  let json: unknown;
   try {
-    json = JSON.parse(parsed.text);
+    return { json: JSON.parse(parsed.text), usage: parsed.usage };
   } catch {
     throw new RetryableError("model content is not json");
   }
-  const checked = checkSchema(json, args.schema);
+}
+
+export async function complete(args: CompleteArgs): Promise<CompleteResult> {
+  const parsed = await callProvider(args);
   return {
-    json: checked,
+    json: checkSchema(parsed.json, args.schema),
+    usage: parsed.usage,
+    costUsd: costUsd(args.model, parsed.usage.inputTokens, parsed.usage.outputTokens),
+  };
+}
+
+export async function completeList(
+  args: Omit<CompleteArgs, "schema"> & { itemRequired: string[] },
+): Promise<{ items: Record<string, unknown>[]; usage: Usage; costUsd: number }> {
+  const parsed = await callProvider({ ...args, schema: { type: "object" } });
+  if (!Array.isArray(parsed.json)) throw new RetryableError("model json is not an array");
+  const items: Record<string, unknown>[] = [];
+  for (const item of parsed.json) {
+    if (item === null || typeof item !== "object" || Array.isArray(item)) {
+      throw new RetryableError("list item is not an object");
+    }
+    const row = item as Record<string, unknown>;
+    for (const key of args.itemRequired) {
+      if (!(key in row)) throw new RetryableError(`missing ${key}`);
+    }
+    items.push(row);
+  }
+  return {
+    items,
     usage: parsed.usage,
     costUsd: costUsd(args.model, parsed.usage.inputTokens, parsed.usage.outputTokens),
   };
