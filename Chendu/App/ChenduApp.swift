@@ -59,14 +59,29 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
 }
 
 struct RootView: View {
+    @State private var auth: SessionStore
+
+    init() {
+        if ProcessInfo.processInfo.arguments.contains("-forceSignedOut") {
+            SessionStore.live.clear()
+        }
+        _auth = State(initialValue: SessionStore.live)
+    }
+
     var body: some View {
-        TabView {
-            IssueListView()
-                .tabItem { Label("晨读", systemImage: "book") }
-            MyNotesView()
-                .tabItem { Label("我的笔记", systemImage: "pencil.and.list.clipboard") }
-            SettingsView()
-                .tabItem { Label("设置", systemImage: "gearshape") }
+        Group {
+            if auth.session == nil {
+                LoginView(auth: auth)
+            } else {
+                TabView {
+                    IssueListView()
+                        .tabItem { Label("晨读", systemImage: "book") }
+                    MyNotesView()
+                        .tabItem { Label("我的笔记", systemImage: "pencil.and.list.clipboard") }
+                    SettingsView()
+                        .tabItem { Label("设置", systemImage: "gearshape") }
+                }
+            }
         }
         .tint(.grammarRed)
         .preferredColorScheme(.light)

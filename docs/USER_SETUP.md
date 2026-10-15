@@ -42,6 +42,16 @@ service role 只放 worker 的环境变量。`supabase status` 打出来的本�
 
 给 Chendu target 加上 Sign in with Apple capability。付费 Team 继续 `com.scoheart.chendu`。免费 Personal Team 继续 `com.scoheart.chendu.dev`，不要为了免费签名去注册主 bundle id。
 
+模拟器登录用本地 magic link，不需要 Apple：
+
+```bash
+SUPABASE_URL=http://127.0.0.1:54321 SUPABASE_ANON_KEY=<anon key> scripts/magic_link.sh you@example.com
+```
+
+anon key 用 `supabase status -o env` 里的 `ANON_KEY`。不要把 service role 放进 Xcode 或环境。验证码在 Inbucket：<http://127.0.0.1:54324>。App 的 scheme 里可以设 `SUPABASE_URL` 和 `SUPABASE_ANON_KEY`，只这两项。
+
+真机 Apple 登录要等 capability 和 Services ID 配好之后你自己登一次。这一步没有在真机上重装。
+
 ## Web（Step 18）
 
 新建一个 Vercel 项目，只填 `SUPABASE_URL` 和 anon key。不要填 service role。不要改现在的静态站项目，也不要部署到 `chendu-english.vercel.app`。

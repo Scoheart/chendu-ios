@@ -33,13 +33,10 @@ final class IssueStore {
     var openLatestRequested = false
 
     let cache: IssueCache
-    private let client: SiteClient
     private var memory: [String: Issue] = [:]
-    private var feedAvailable: Bool?
 
-    init(cache: IssueCache = IssueCache(), client: SiteClient = .shared) {
+    init(cache: IssueCache = IssueCache()) {
         self.cache = cache
-        self.client = client
         if let cached = cache.loadIndex() {
             summaries = cached
             indexSource = .cache
@@ -69,22 +66,7 @@ final class IssueStore {
     }
 
     private func fetchIndex() async throws -> ([IssueSummary], DataSource) {
-        if feedAvailable != false {
-            do {
-                let data = try await client.data("issues.json")
-                let feed = try JSONDecoder().decode(FeedIndex.self, from: data)
-                feedAvailable = true
-                return (feed.issues.sorted { $0.date > $1.date }, .feed)
-            } catch NetError.http {
-                feedAvailable = false
-            } catch is DecodingError {
-                feedAvailable = false
-            }
-        }
-        let html = String(decoding: try await client.data(""), as: UTF8.self)
-        let issues = SiteParser.parseIndex(html)
-        if issues.isEmpty { throw SiteParser.ParseError.missing("往期列表") }
-        return (issues, .html)
+        (cache.loadIndex() ?? [], .cache)
     }
 
     // MARK: issues
@@ -111,23 +93,13 @@ final class IssueStore {
     }
 
     private func fetchIssue(_ date: String) async throws -> (Issue, DataSource) {
-        if feedAvailable != false {
-            do {
-                let data = try await client.data("issues/\(date)/issue.json")
-                return (try JSONDecoder().decode(Issue.self, from: data), .feed)
-            } catch NetError.http {
-                // Missing per-issue JSON: fall through to the page.
-            } catch is DecodingError {
-                // Incompatible feed version: fall through to the page.
-            }
-        }
-        let html = String(decoding: try await client.data("issues/\(date)/"), as: UTF8.self)
-        return (try SiteParser.parseIssue(html, date: date), .html)
+        if let cached = cachedIssue(date) { return (cached, .cache) }
+        throw OfflineOnly()
     }
 
     // MARK: audio & offline
 
-    func remoteURL(_ date: String, _ file: String) -> URL { client.url("issues/\(date)/\(file)") }
+    func remoteURL(_ date: String, _ file: String) -> URL { cache.fileURL(date, file) }
 
     func localAudio(_ date: String, _ track: AudioTrack) -> URL? {
         cache.hasFile(date, track.file) ? cache.fileURL(date, track.file) : nil
@@ -135,10 +107,7 @@ final class IssueStore {
 
     func downloadAudio(_ date: String, _ track: AudioTrack) async throws -> URL {
         if let local = localAudio(date, track) { return local }
-        let dest = cache.fileURL(date, track.file)
-        try await client.download("issues/\(date)/\(track.file)", to: dest)
-        cacheRevision += 1
-        return dest
+        throw OfflineOnly()
     }
 
     func isOffline(_ date: String) -> Bool {
@@ -192,6 +161,9 @@ final class IssueStore {
             default: return "网络错误（\(e.code.rawValue)）"
             }
         }
+        if error is OfflineOnly { return "这一期还没有缓存" }
         return error.localizedDescription
     }
 }
+
+private struct OfflineOnly: Error {}
