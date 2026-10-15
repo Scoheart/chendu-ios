@@ -1,0 +1,95 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  deno:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.5.6
+      - run: deno test --allow-read packages/pipeline
+
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - run: npm ci
+      - run: npm test
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: scripts/scan_secrets_test.sh
+
+  supabase:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.120.0
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.5.6
+      - run: supabase start
+      - run: |
+          set -euo pipefail
+          for script in \
+            run_identity.sh \
+            run_content.sh \
+            run_notes.sh \
+            run_vault.sh \
+            run_audio.sh \
+            run_worker.sh \
+            run_schedule.sh \
+            run_settings.sh \
+            run_import.sh
+          do
+            "supabase/tests/${script}"
+          done
+
+  ios:
+    runs-on: macos-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: ChenduTests
+        run: |
+          set -euo pipefail
+          udid="$(python3 - <<'PY'
+          import json, subprocess, sys
+          raw = subprocess.check_output(["xcrun", "simctl", "list", "devices", "available", "-j"])
+          data = json.loads(raw)
+          for runtime, devices in data.get("devices", {}).items():
+              if "iOS" not in runtime:
+                  continue
+              for device in devices:
+                  if device.get("isAvailable") and str(device.get("name", "")).startswith("iPhone"):
+                      print(device["udid"])
+                      sys.exit(0)
+          sys.exit("no iPhone simulator")
+          PY
+          )"
+          xcodebuild \
+            -project Chendu.xcodeproj \
+            -scheme Chendu \
+            -destination "platform=iOS Simulator,id=${udid}" \
+            -derivedDataPath build/ci \
+            CODE_SIGNING_ALLOWED=NO \
+            -only-testing:ChenduTests \
+            test

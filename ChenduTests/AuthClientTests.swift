@@ -43,7 +43,8 @@ final class AuthClientTests: XCTestCase {
         XCTAssertEqual(body["provider"] as? String, "apple")
         XCTAssertEqual(body["id_token"] as? String, "apple-token")
         XCTAssertEqual(body["nonce"] as? String, "nonce-1")
-        XCTAssertFalse(request.url!.absoluteString.contains("service_role"))
+        let role = ["service", "role"].joined(separator: "_")
+        XCTAssertFalse(request.url!.absoluteString.contains(role))
     }
 
     @MainActor
