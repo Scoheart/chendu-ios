@@ -58,6 +58,19 @@ The build number defaults to a UTC timestamp. Authentication uses an App Store C
 2. In App Store Connect, create the app (My Apps › + › New App) with bundle id `com.scoheart.chendu`. Register the identifier first under developer.apple.com › Identifiers if it doesn't appear in the list.
 3. After the first build finishes processing, go to TestFlight › Internal Testing, create a group, add yourself, and install the build with the TestFlight app on the iPhone.
 
+## Layout
+
+```
+Chendu/               iOS app（本步不改 Swift）
+apps/web/             登录后的阅读器（Vite + React）
+supabase/             本地 Postgres、Auth、Storage
+packages/prompts/     select / annotate / vocab / patterns 的默认模板
+packages/pipeline/    Deno worker：抓取、模型、TTS、job
+docs/                 架构与实施计划
+```
+
+产品只有 Supabase 一条数据路径。下面「Data source」描述的是当前已安装阅读器的行为；静态站解析会在 iOS 数据层那一步删掉，不保留兜底。
+
 ## Develop
 
 ```bash
