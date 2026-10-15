@@ -1,8 +1,8 @@
 # 晨读 iOS
 
-Native SwiftUI reader (iOS 17+) for [晨读](https://chendu-english.vercel.app/), a daily English close-reading issue with handwritten Chinese margin notes. Personal use; not for the App Store.
+Native SwiftUI reader (iOS 17+) for 晨读, a daily English close-reading issue. Personal use; not for the App Store. Issues come from the signed-in user's Supabase project.
 
-- **Issue list**: newest first, with topic tag and date, pulled from the live site. Pull down to refresh.
+- **Issue list**: newest first, with topic tag and date. Pull down to refresh.
 - **Reader**: tap a highlighted phrase to open its handwritten note under the paragraph, one note at a time. Also shows review words (🔊 reads them aloud with system TTS), sentence patterns to imitate, the podcast link and source credits.
 - **Audio**: plays the issue's normal and slow mp3s with background playback, lock-screen and Control Center controls, ±15 s skip and 0.8×–1.5× speed.
 - **My notes**: long-press to select article text, then pick **加笔记** in the edit menu. Notes are highlighted, editable and deletable, and stored on the device with SwiftData. The **我的笔记** tab lists notes from every issue, with copy, Markdown export and a jump back to the passage.
@@ -11,15 +11,7 @@ Native SwiftUI reader (iOS 17+) for [晨读](https://chendu-english.vercel.app/)
 
 ## Data source
 
-The app tries the JSON feed first and falls back to parsing the rendered pages:
-
-| | JSON feed (preferred) | Fallback |
-|---|---|---|
-| index | `/issues.json` | `/` (home page archive) |
-| issue | `/issues/<date>/issue.json` | `/issues/<date>/` |
-| audio | `/issues/<date>/audio.mp3`, `audio-slow.mp3` | same |
-
-The site generates the feed with `tools/build_app_feed.py` (not in this repo). Its output is checked against the app's own HTML parser in `ChenduTests` (`testFeedJSONMatchesPageParser`), so either source gives identical issues.
+The only source is Supabase. The list is `issues` ordered by `issue_date` descending, with annotations, vocab, patterns, and audio rows. Audio is a signed URL from the private `audio` bucket, then saved in the offline cache. There is no HTML parser and no static-site feed.
 
 ## Run on your iPhone
 
@@ -73,7 +65,7 @@ packages/pipeline/    Deno worker：抓取、模型、TTS、job
 docs/                 架构与实施计划
 ```
 
-产品只有 Supabase 一条数据路径。下面「Data source」描述的是当前已安装阅读器的行为；静态站解析会在 iOS 数据层那一步删掉，不保留兜底。
+产品只有 Supabase 一条数据路径。未登录只显示登录页。
 
 ## Worker
 
@@ -116,7 +108,7 @@ xcodegen generate
 xcodebuild -project Chendu.xcodeproj -scheme Chendu -destination 'platform=iOS Simulator,name=iPhone 17' test
 ```
 
-`ChenduUITests/SmokeTests` runs against the live site: launch → list → open issue → tap a margin note → add a note → play audio → my notes. If the network needs a proxy, Debug builds read `CHENDU_PROXY` (for example `TEST_RUNNER_CHENDU_PROXY=127.0.0.1:6789`). `CHENDU_BASE_URL` points the app at another copy of the site, such as a local feed server. Set `TEST_RUNNER_SCREENSHOT_DIR=/path` to save the smoke-test screenshots as PNGs.
+`ChenduUITests/SmokeTests` launches to the login screen and does not open a network connection. Set `SUPABASE_URL` and `SUPABASE_ANON_KEY` when you want a signed-in simulator session against the local stack.
 
 To regenerate the app icon and lock-screen artwork: `swift scripts/make_icon.swift`.
 

@@ -3,12 +3,11 @@ import Observation
 
 /// Where the currently shown data came from.
 enum DataSource: String {
-    case feed, html, cache, none
+    case remote, cache, none
 
     var label: String {
         switch self {
-        case .feed: "JSON 数据源"
-        case .html: "网页解析（JSON 数据源未部署）"
+        case .remote: "Supabase"
         case .cache: "离线缓存"
         case .none: "—"
         }
@@ -34,13 +33,27 @@ final class IssueStore {
 
     let cache: IssueCache
     private var memory: [String: Issue] = [:]
+    private var audioPaths: [String: [String: String]] = [:]
+    private let remoteOverride: (any IssueRemote)?
 
-    init(cache: IssueCache = IssueCache()) {
+    init(cache: IssueCache = IssueCache(), remote: (any IssueRemote)? = nil) {
         self.cache = cache
+        self.remoteOverride = remote
         if let cached = cache.loadIndex() {
             summaries = cached
             indexSource = .cache
         }
+    }
+
+    private func remote() -> (any IssueRemote)? {
+        if let remoteOverride { return remoteOverride }
+        guard let session = SessionStore.live.session else { return nil }
+        return SupabaseIssueRemote(
+            baseURL: SupabaseConfig.url,
+            anonKey: SupabaseConfig.anonKey,
+            accessToken: session.accessToken,
+            transport: URLSessionTransport()
+        )
     }
 
     // MARK: index
@@ -66,7 +79,14 @@ final class IssueStore {
     }
 
     private func fetchIndex() async throws -> ([IssueSummary], DataSource) {
-        (cache.loadIndex() ?? [], .cache)
+        guard let remote = remote() else { return (cache.loadIndex() ?? [], .cache) }
+        let fetched = try await remote.fetchIssues()
+        audioPaths = fetched.audioPaths
+        for issue in fetched.issues {
+            memory[issue.date] = issue
+            cache.save(issue)
+        }
+        return (fetched.issues.map(\.summary), .remote)
     }
 
     // MARK: issues
@@ -107,7 +127,13 @@ final class IssueStore {
 
     func downloadAudio(_ date: String, _ track: AudioTrack) async throws -> URL {
         if let local = localAudio(date, track) { return local }
-        throw OfflineOnly()
+        guard let remote = remote(), let path = audioPaths[date]?[track.id] else { throw OfflineOnly() }
+        let data = try await remote.audioData(storagePath: path)
+        let dest = cache.fileURL(date, track.file)
+        try FileManager.default.createDirectory(at: dest.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try data.write(to: dest, options: .atomic)
+        cacheRevision += 1
+        return dest
     }
 
     func isOffline(_ date: String) -> Bool {

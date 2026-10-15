@@ -58,8 +58,7 @@ final class AudioPlayer {
         let url: URL
         if let local = store.localAudio(issue.date, track) {
             url = local
-        } else if SiteClient.shared.usesProxy {
-            // AVPlayer ignores URLSession proxies, so fetch through the session first.
+        } else {
             do {
                 url = try await store.downloadAudio(issue.date, track)
             } catch {
@@ -68,9 +67,6 @@ final class AudioPlayer {
                 isLoading = false
                 return
             }
-        } else {
-            url = store.remoteURL(issue.date, track.file)
-            Task { _ = try? await store.downloadAudio(issue.date, track) }
         }
         guard loadToken == token else { return }
 
