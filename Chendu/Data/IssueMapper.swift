@@ -1,6 +1,7 @@
 import Foundation
 
 struct IssueRow: Decodable {
+    var id: String?
     var issueDate: String
     var topic: String?
     var topicLabel: String?
@@ -17,6 +18,7 @@ struct IssueRow: Decodable {
     var audio: [AudioRow]
 
     enum CodingKeys: String, CodingKey {
+        case id
         case issueDate = "issue_date"
         case topic
         case topicLabel = "topic_label"
@@ -113,7 +115,8 @@ enum IssueMapper {
             patterns: row.patterns.sorted { $0.position < $1.position }.map {
                 SentencePattern(pattern: $0.pattern, patternZh: $0.patternZh, source: $0.source, model: $0.model, modelZh: $0.modelZh)
             },
-            podcast: row.podcast
+            podcast: row.podcast,
+            remoteId: row.id
         )
     }
 

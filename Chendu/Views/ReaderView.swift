@@ -219,7 +219,7 @@ struct ReaderView: View {
     @ViewBuilder
     private func paragraphView(_ p: Paragraph, issue: Issue, notesByN: [Int: Annotation], noteParagraph: [Int: Int]) -> some View {
         let plain = p.text
-        let paraNotes = notes.filter { $0.paragraphIndex == p.index }
+        let paraNotes = notes.filter { $0.paragraphIndex == p.index && $0.deletedAt == nil }
         let marks = paraNotes.compactMap { n in n.resolvedRange(in: plain).map { UserMark(id: n.id, range: $0) } }
         let rendering = ParagraphRendering.make(segments: p.segments, notes: notesByN, marks: marks, activeKey: activeKey, fontSize: fontSize)
         VStack(alignment: .leading, spacing: 10) {
@@ -307,6 +307,7 @@ struct ReaderView: View {
         } else {
             let note = UserNote(issueDate: date, issueTitle: issue?.title ?? "", paragraphIndex: d.paragraphIndex,
                                 start: d.range.location, length: d.range.length, quote: d.quote, text: text)
+            note.issueRemoteId = issue?.remoteId
             context.insert(note)
             activeKey = note.key
         }
@@ -315,7 +316,7 @@ struct ReaderView: View {
 
     private func delete(_ note: UserNote) {
         if activeKey == note.key { activeKey = nil }
-        context.delete(note)
+        note.markDeleted()
         try? context.save()
     }
 }
