@@ -417,3 +417,23 @@ export async function runOnce(args: RunOnceArgs): Promise<{ jobId: string | null
     return { jobId: job.id, status: failure.stop ? "failed" : "queued" };
   }
 }
+
+if (import.meta.main) {
+  const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
+  const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
+  if (!supabaseUrl || !serviceKey) {
+    console.error("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required");
+    Deno.exit(1);
+  }
+  const result = await runOnce({
+    supabaseUrl,
+    serviceKey,
+    keys: {
+      llm: Deno.env.get("OPENAI_API_KEY") ?? undefined,
+      tts: Deno.env.get("OPENAI_TTS_API_KEY") ?? undefined,
+    },
+  });
+  if (!result.jobId) {
+    console.log(JSON.stringify({ job_id: null, user_id: null, step: "idle", attempt: 0 }));
+  }
+}
